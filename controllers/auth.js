@@ -4,9 +4,10 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config();
 
 
-const createToken = (id)=>{
+const createToken = (id, name)=>{
   return jwt.sign({
-    id
+    id,
+   name
   }, process.env.JWT_SEC, {
     expiresIn: process.env.JWT_EXP
   } )
@@ -54,7 +55,7 @@ const loginUser = async(req,res)=>{
       res.status(404).json({message: 'invalid details'})
       return
     }
-    const token = createToken(user._id)
+    const token = createToken(user._id, user.name)
     res.status(200).json({message: 'you are logged in', token})
 
    
@@ -66,5 +67,18 @@ const loginUser = async(req,res)=>{
 
 }
 
+const getUser = async(req,res)=>{
+  const id = req.user.id
 
-module.exports = { signUpUser, loginUser };
+  try{
+    const response = await Auth.findById(id).select('-password')
+    if(!response) return res.status(404).json({message: 'An error occur '})
+
+    res.status(201).json(response)
+
+  }catch(error){
+    res.status(500).json(error)
+  }
+}
+
+module.exports = { signUpUser, loginUser, getUser };
