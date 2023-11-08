@@ -10,10 +10,17 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 // database connection
-const dbURI = 'mongodb+srv://shaun:test1234@cluster0.del96.mongodb.net/node-auth';
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
-  .then((result) => app.listen(3000))
-  .catch((err) => console.log(err));
+const dbURI =
+  'mongodb+srv://Benjamin:benjamin101@cluster0.eqnu0lq.mongodb.net/node-auth';
+mongoose
+  .connect(dbURI)
+  .then(() => {
+    app.listen(3030);
+    console.log('...db connected');
+  })
+  .catch(error => {
+    console.log(error);
+  });
 
 // routes
 app.get('/', (req, res) => res.render('home'));
