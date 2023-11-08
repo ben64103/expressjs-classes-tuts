@@ -82,3 +82,4 @@ const getUser = async(req,res)=>{
 }
 
 module.exports = { signUpUser, loginUser, getUser };
+ 
