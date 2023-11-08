@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const authRoutes = require('./routes/authRoutes')
 
 const app = express();
 
@@ -11,11 +12,12 @@ app.set('view engine', 'ejs');
 
 // database connection
 const dbURI =
-  'mongodb+srv://Benjamin:benjamin101@cluster0.eqnu0lq.mongodb.net/node-auth';
+'mongodb://localhost:27017/NodeAuth';
+  // 'mongodb+srv://Benjamin:benjamin101@cluster0.eqnu0lq.mongodb.net/node-auth';
 mongoose
   .connect(dbURI)
   .then(() => {
-    app.listen(3030);
+    app.listen(4000);
     console.log('...db connected');
   })
   .catch(error => {
@@ -25,3 +27,5 @@ mongoose
 // routes
 app.get('/', (req, res) => res.render('home'));
 app.get('/smoothies', (req, res) => res.render('smoothies'));
+app.use(authRoutes)
+// app.get('/signup', (req, res) => res.render('signup'))
