@@ -11,7 +11,7 @@ const createToken = (id, name)=>{
   }, process.env.JWT_SEC, {
     expiresIn: process.env.JWT_EXP
   } )
-
+ 
 }
 
 
@@ -25,7 +25,7 @@ const signUpUser = async(req, res) => {
   const response = await Auth.create({name, email, password: hashedPasssword})
     res.status(200).json({
       success: {
-        msg: 'Authentication Valid',
+        msg: 'Authentication Valid', 
       },
     });
   } catch (error) {
