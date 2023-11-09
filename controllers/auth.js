@@ -41,6 +41,7 @@ const signUpUser = async(req, res) => {
 
 
 const loginUser = async(req,res)=>{
+  console.log('dd')
   const {email, password} = req.body
   try{
     const user = await Auth.findOne({email})
