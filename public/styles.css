@@ -1,5 +1,5 @@
 /* google fonts */
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap'); */
 
 body{
   margin: 20px 40px;
@@ -136,4 +136,10 @@ footer{
   text-align: center;
   margin-top: 120px;
   color: #aaa;
+}
+
+.btn.btn-signup {
+  position: absolute;
+  top: 0;
+  right: 10px;
 }
